@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Crisis Simulation Matrix</title>
+<meta name="description" content="Rapid-fire club management crisis quiz." />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#0a0a0d" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=2" />
+<link rel="stylesheet" href="assets/css/quiz.css?v=2" />
+</head>
+<body class="quiz-body">
+
+<div class="quiz-shell">
+  <div class="quiz-eyebrow">Crisis Simulation Matrix</div>
+  <div class="quiz-title" id="quizTitle">Audit Your Club's Resilience</div>
+  <p class="quiz-intro-text" id="quizIntro">3 rapid-fire scenarios. Real budgets, real infrastructure, real people. Pick the move you'd actually make.</p>
+
+  <div class="quiz-progress" id="quizProgress">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="quiz-card" id="quizCard"></div>
+
+  <a href="index.html" class="quiz-back">← Back to the full portfolio</a>
+</div>
+
+<script src="assets/js/quiz.js?v=2"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>
