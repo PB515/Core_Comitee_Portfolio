@@ -37,28 +37,46 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   qrUrl.textContent = synergyUrl;
 })();
 
-// ---- Lightbox for certificate/photo thumbnails ----
+// ---- Lightbox for certificate/photo/video thumbnails ----
 (function setupLightbox() {
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxVid = document.getElementById('lightboxVid');
   const closeBtn = document.getElementById('lightboxClose');
   if (!lightbox) return;
 
-  function open(src, alt) {
+  function openImage(src, alt) {
     lightboxImg.src = src;
     lightboxImg.alt = alt || '';
+    lightboxImg.style.display = 'block';
+    lightboxVid.style.display = 'none';
+    lightbox.classList.add('open');
+  }
+  function openVideo(src) {
+    lightboxVid.src = src;
+    lightboxVid.style.display = 'block';
+    lightboxImg.style.display = 'none';
     lightbox.classList.add('open');
   }
   function close() {
     lightbox.classList.remove('open');
     lightboxImg.src = '';
+    lightboxVid.src = '';
   }
 
   document.querySelectorAll('.cert-thumb').forEach((thumb) => {
     thumb.addEventListener('click', (e) => {
       e.preventDefault();
       const img = thumb.querySelector('img');
-      open(thumb.href, img ? img.alt : '');
+      openImage(thumb.href, img ? img.alt : '');
+    });
+  });
+
+  document.querySelectorAll('.video-item video').forEach((vid) => {
+    vid.style.cursor = 'pointer';
+    vid.addEventListener('click', (e) => {
+      e.preventDefault();
+      openVideo(vid.src);
     });
   });
 
